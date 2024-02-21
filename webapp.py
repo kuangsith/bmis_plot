@@ -15,7 +15,7 @@ js = datalib.get_since_long('2024-02-15','2024-02-18')
 datalib.process_json(js)
 df = datalib.processed_json_to_df(js)
 
-st.line_chart(data=df[['Conductivity',f'WaterTemp_ACTW']])
+st.line_chart(data=df,x='time',y='WaterTemp_ACTW')
 
 
 
