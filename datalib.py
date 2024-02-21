@@ -1,7 +1,7 @@
 import requests
 import datetime
 import pandas as pd
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 
 table_list = ['ACTW','ACLW ','AROW']
 unitdict = {'WaterTemp_ACTW':'°C'}
@@ -86,11 +86,11 @@ def processed_json_to_df(jsonvar):
 
     return df
 
-def plotcol(df,col,dpi=200):
-    plt.figure(dpi=dpi)
-    plt.scatter(df['time'],df[col])
-    plt.title(col)
-    plt.xlabel('Time')
-    plt.xticks(rotation=45)
-    plt.ylabel(unitdict.get(col))
-    plt.show()
+# def plotcol(df,col,dpi=200):
+#     plt.figure(dpi=dpi)
+#     plt.scatter(df['time'],df[col])
+#     plt.title(col)
+#     plt.xlabel('Time')
+#     plt.xticks(rotation=45)
+#     plt.ylabel(unitdict.get(col))
+#     plt.show()
