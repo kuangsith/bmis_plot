@@ -33,6 +33,8 @@ df = pd.DataFrame(data[1:],columns=data[0])
 
 collist= [col for col in df.columns if col not in ['TimeStamp','Record']]
 
+df['TimeStamp'] = pd.to_datetime(df['TimeStamp'])
+
 for col in collist:
     # print(col)
     st.line_chart(data=df,x='TimeStamp',y=col)
