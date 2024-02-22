@@ -9,7 +9,7 @@ import time
 
 st.header('BIMS DATA')
 
-npoints = 1800
+npoints = 4320
 samplerate = 1
 
 tablist = ['ACTW','ACLW','AROW']
