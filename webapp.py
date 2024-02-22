@@ -4,6 +4,7 @@ import requests
 import streamlit as st
 import numpy
 import pandas as pd
+import time
 
 
 st.header('BIMS DATA')
@@ -11,6 +12,8 @@ st.header('BIMS DATA')
 
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
+
+start = time.time()
 
 
 
@@ -38,3 +41,7 @@ df['TimeStamp'] = pd.to_datetime(df['TimeStamp'])
 for col in collist:
     # print(col)
     st.line_chart(data=df,x='TimeStamp',y=col)
+
+end = time.time()
+
+st.write(f'Time spent: {round(end-start,2)} seconds.')
