@@ -9,12 +9,14 @@ import time
 
 st.header('BIMS DATA')
 
-npoints = 10080
-samplerate = 20
+npoints = 1800
+samplerate = 1
 
+tablist = ['ACTW','ACLW ','AROW']
 
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
+    tabname = st.radio("Select table name:",tablist,captions=tablist)
 
 start = time.time()
 
@@ -22,7 +24,7 @@ start = time.time()
 
 
 
-url = f'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tabACLW&format=html&mode=most-recent&p1={npoints}&p2='
+url = f'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tab{tabname}&format=html&mode=most-recent&p1={npoints}&p2='
 page = requests.get(url)
 soup = BeautifulSoup(page.text, 'html.parser')
 
