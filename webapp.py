@@ -16,7 +16,7 @@ with st.expander("Setting"):
 
 
 
-url = 'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tabACLW&format=html&mode=most-recent&p1=7200&p2='
+url = 'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tabACLW&format=html&mode=most-recent&p1=3600&p2='
 page = requests.get(url)
 soup = BeautifulSoup(page.text, 'html.parser')
 
@@ -35,4 +35,4 @@ collist= [col for col in df.columns if col not in ['TimeStamp','Record']]
 
 for col in collist:
     # print(col)
-    st.line_chart(data=df,x='time',y=col)
+    st.line_chart(data=df,x='TimeStamp',y=col)
