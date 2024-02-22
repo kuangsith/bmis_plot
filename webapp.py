@@ -9,7 +9,7 @@ import time
 
 st.header('BIMS DATA')
 
-npoints = 1800
+npoints = 2400
 
 
 with st.expander("Setting"):
