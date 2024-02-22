@@ -49,4 +49,4 @@ for col in collist:
 
 end = time.time()
 
-st.write(f'Time spent: {round(end-start,2)} seconds based on last {npoints} data points.')
+st.write(f'Time spent: {round(end-start,2)} seconds based on last {npoints} data points, sample rate = 1 in {samplerate}.')
