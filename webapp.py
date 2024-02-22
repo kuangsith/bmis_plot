@@ -9,6 +9,8 @@ import time
 
 st.header('BIMS DATA')
 
+npoints = 1800
+
 
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
@@ -19,7 +21,7 @@ start = time.time()
 
 
 
-url = 'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tabACLW&format=html&mode=most-recent&p1=3600&p2='
+url = f'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tabACLW&format=html&mode=most-recent&p1={npoints}&p2='
 page = requests.get(url)
 soup = BeautifulSoup(page.text, 'html.parser')
 
@@ -44,4 +46,4 @@ for col in collist:
 
 end = time.time()
 
-st.write(f'Time spent: {round(end-start,2)} seconds.')
+st.write(f'Time spent: {round(end-start,2)} seconds based on last {npoints} data points.')
