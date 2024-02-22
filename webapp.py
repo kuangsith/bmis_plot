@@ -9,8 +9,8 @@ import time
 
 st.header('BIMS DATA')
 
-npoints = 4800
-samplerate = 4
+npoints = 10080
+samplerate = 1
 
 
 with st.expander("Setting"):
