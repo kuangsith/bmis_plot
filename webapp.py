@@ -1,25 +1,38 @@
 import pandas as pd
-import datetime
-import datalib
+from bs4 import BeautifulSoup
+import requests
 import streamlit as st
 import numpy
+import pandas as pd
 
 
-st.header('BMIS DATA')
+st.header('BIMS DATA')
 
 
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
 
-js = datalib.get_since_long('2024-02-15','2024-02-18')
-datalib.process_json(js)
-df = datalib.processed_json_to_df(js)
 
 
-collist= [col for col in df.columns if col not in ['time','no']]
+
+
+url = 'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tabACLW&format=html&mode=most-recent&p1=7200&p2='
+page = requests.get(url)
+soup = BeautifulSoup(page.text, 'html.parser')
+
+table = soup.find('table')
+rows = table.find_all('tr')
+
+data = []
+for row in rows:
+    cols = row.find_all(['td', 'th'])
+    cols = [ele.text.strip() for ele in cols]
+    data.append([ele for ele in cols if ele])
+
+df = pd.DataFrame(data[1:],columns=data[0])
+
+collist= [col for col in df.columns if col not in ['TimeStamp','Record']]
 
 for col in collist:
+    # print(col)
     st.line_chart(data=df,x='time',y=col)
-
-
-
