@@ -5,7 +5,7 @@ import streamlit as st
 import numpy
 import pandas as pd
 import time
-# from bokeh.plotting import figure
+from bokeh.plotting import figure
 
 st.header('BIMS DATA')
 
@@ -42,6 +42,7 @@ df = pd.DataFrame(data[1:],columns=data[0])
 collist= [col for col in df.columns if col not in ['TimeStamp','Record']]
 
 df['TimeStamp'] = pd.to_datetime(df['TimeStamp'])
+
 for col in collist:
     df[col] = df[col].astype('float')
     
@@ -49,18 +50,18 @@ for col in collist:
 
 df_lite = df[(df.index % samplerate) == 0].copy().reset_index(drop=True)
 
-for col in collist:
-    # print(col)
-    st.line_chart(data=df_lite,x='TimeStamp',y=col,height=400)
-
 # for col in collist:
-#     p = figure(
-#     title=col,
-#     x_axis_label='Time',
-#     y_axis_label=col)
+#     # print(col)
+#     st.line_chart(data=df_lite,x='TimeStamp',y=col,height=400)
 
-#     p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
-#     st.bokeh_chart(p, use_container_width=True)
+for col in collist:
+    p = figure(
+    title=col,
+    x_axis_label='Time',
+    y_axis_label=col)
+
+    p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
+    st.bokeh_chart(p, use_container_width=True)
 
 
 
