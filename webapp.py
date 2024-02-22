@@ -12,7 +12,7 @@ st.header('BIMS DATA')
 npoints = 1800
 samplerate = 1
 
-tablist = ['ACTW','ACLW ','AROW']
+tablist = ['ACTW','ACLW','AROW']
 
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
