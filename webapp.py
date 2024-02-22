@@ -40,7 +40,7 @@ df['TimeStamp'] = pd.to_datetime(df['TimeStamp'])
 
 for col in collist:
     # print(col)
-    st.line_chart(data=df,x='TimeStamp',y=col)
+    st.line_chart(data=df,x='TimeStamp',y=col,height=400)
 
 end = time.time()
 
