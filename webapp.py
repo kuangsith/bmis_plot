@@ -58,7 +58,8 @@ for col in collist:
     p = figure(
     title=col,
     x_axis_label='Time',
-    y_axis_label=col)
+    y_axis_label=col,
+    x_axis_type="datetime")
 
     p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
     st.bokeh_chart(p, use_container_width=True)
