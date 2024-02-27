@@ -7,6 +7,7 @@ import config
 import pandas as pd
 import time
 from bokeh.plotting import figure
+from bokeh.models import HoverTool 
 
 st.header('BIMS DATA')
 
@@ -59,6 +60,9 @@ for col in collist:
     x_axis_type="datetime")
 
     p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
+
+    hover = HoverTool(tooltips=[('Label', '@labels')]) 
+    p.add_tools(hover) 
     st.bokeh_chart(p, use_container_width=True)
 
 
