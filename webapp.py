@@ -55,7 +55,7 @@ for col in collist:
     p = figure(
     title=col,
     x_axis_label='Time',
-    y_axis_label= unit_dict.get(col) if unit_dict.get(col) is not None else col
+    y_axis_label= unit_dict.get(col) if unit_dict.get(col) is not None else col,
     x_axis_type="datetime")
 
     p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
