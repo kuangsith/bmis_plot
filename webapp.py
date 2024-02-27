@@ -14,6 +14,22 @@ samplerate = 1
 
 tablist = ['ACTW','ACLW','AROW']
 
+unit_dict = {'WaterTemp_ACTW':'°C',
+ 'Conductivity':None,
+ 'Salinity':'psu',
+ 'ACTWVoltage':None,
+ 'WaterTemp_ACLW':'°C',
+ 'Chlorophyll':'mg/m3',
+ 'Turbidity':None,
+ 'ACLWVoltage':None,
+ 'LoggerVoltage_Min':None,
+ 'LoggerTemp':'°C',
+ 'WaterTemp_AROW':'°C',
+ 'DO_AROW':'%',
+ 'AROWVoltage':None,
+ 'DO_mgL':'mg/L'
+ }
+
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
     tabname = st.radio("Select table name:",tablist,captions=tablist)
