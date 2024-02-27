@@ -6,7 +6,7 @@ import numpy
 import config
 import pandas as pd
 import time
-# from bokeh.plotting import figure
+from bokeh.plotting import figure
 
 st.header('BIMS DATA')
 
