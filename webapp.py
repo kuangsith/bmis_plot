@@ -3,42 +3,24 @@ from bs4 import BeautifulSoup
 import requests
 import streamlit as st
 import numpy
+import config
 import pandas as pd
 import time
-from bokeh.plotting import figure
+# from bokeh.plotting import figure
 
 st.header('BIMS DATA')
 
 npoints = 60*24*3
 samplerate = 1
 
-tablist = ['ACTW','ACLW','AROW']
-
-unit_dict = {'WaterTemp_ACTW':'°C',
- 'Conductivity':None,
- 'Salinity':'psu',
- 'ACTWVoltage':None,
- 'WaterTemp_ACLW':'°C',
- 'Chlorophyll':'mg/m3',
- 'Turbidity':None,
- 'ACLWVoltage':None,
- 'LoggerVoltage_Min':None,
- 'LoggerTemp':'°C',
- 'WaterTemp_AROW':'°C',
- 'DO_AROW':'%',
- 'AROWVoltage':None,
- 'DO_mgL':'mg/L'
- }
+tablist = config.tablist()
+unit_dict = config.unit_dict()
 
 with st.expander("Setting"):
     st.write(f"Table name and column name will be selected here")
     tabname = st.radio("Select table name:",tablist,captions=tablist)
 
 start = time.time()
-
-
-
-
 
 url = f'http://110.49.150.135:4002/CPU/?command=DataQuery&uri=dl:tab{tabname}&format=html&mode=most-recent&p1={npoints}&p2='
 page = requests.get(url)
@@ -58,7 +40,6 @@ df = pd.DataFrame(data[1:],columns=data[0])
 collist= [col for col in df.columns if col not in ['TimeStamp','Record']]
 
 df['TimeStamp'] = pd.to_datetime(df['TimeStamp'])
-
 for col in collist:
     df[col] = df[col].astype('float')
     
@@ -74,14 +55,11 @@ for col in collist:
     p = figure(
     title=col,
     x_axis_label='Time',
-    y_axis_label=col,
+    y_axis_label= unit_dict.get(col) if unit_dict.get(col) is not None else col
     x_axis_type="datetime")
 
     p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
     st.bokeh_chart(p, use_container_width=True)
-
-
-
 
 
 end = time.time()
