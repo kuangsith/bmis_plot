@@ -59,7 +59,7 @@ for col in collist:
     y_axis_label= unit_dict.get(col) if unit_dict.get(col) is not None else col,
     x_axis_type="datetime")
 
-    p.line(df_lite['TimeStamp'], df_lite[col], line_width=2)
+    p.line(source = df_lite, x= 'TimeStamp', y= col, line_width=2)
 
     hover = HoverTool(tooltips=[('@TimeStamp', f'@{col}')]) 
     p.add_tools(hover) 
