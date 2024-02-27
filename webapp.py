@@ -61,8 +61,8 @@ for col in collist:
 
     p.line(source = df_lite, x= 'TimeStamp', y= col, line_width=2)
 
-    hover = HoverTool(tooltips=[('', f'@TimeStamp @{col}')]) 
-    p.add_tools(hover) 
+    # hover = HoverTool(tooltips=[('', f'@TimeStamp @{col}')]) 
+    # p.add_tools(hover) 
     st.bokeh_chart(p, use_container_width=True)
 
 
